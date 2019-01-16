@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   // minimum requirement is entry & output
   // where to start the bundling - i.e., where the index.js lives
-  entry: './src/js/index.js',
+  entry: ['babel-polyfill', './src/js/index.js'],
   // the final bundle
   output: {
     // must be an absolute package - needs the node package path
@@ -28,5 +28,16 @@ module.exports = {
       // the file to copy
       template: './src/index.html'
     })
-  ]
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node-modules/,
+        use: {
+          loader: 'babel-loader'
+        }
+      }
+    ]
+  }
 }
