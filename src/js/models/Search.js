@@ -9,11 +9,11 @@ export default class Search {
     // this.requestUrl = 'https://www.food2fork.com/api/get'; 
   }
 
-  async getResults(query) {
+  async getResults() {
     try {
       const result = await axios (`${this.proxy}${this.searchUrl}?key=${this.key}&q=${this.query}`);
       this.recipes = result.data.recipes;
-      console.log(this.recipes);
+    //   console.log(this.recipes);
     } catch(error) {
       console.log(error)
     }
