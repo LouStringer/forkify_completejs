@@ -13,12 +13,16 @@ module.exports = {
     // gives access to the __dirname variable -> this contains the path of the current working directory
     // then add the extension to the folder the final bundle should go in
     path: path.resolve(__dirname, 'dist'),
-    filename: 'js/bundle.js'
+    filename: 'js/bundle.js',
   },
   // this allows the use of webpack dev server to set up alocal server that updates automatocally when saved
   devServer: {
     // the folder where the bundled webpack lives, to give to the server
-    contentBase: './dist'
+    contentBase: './dist',
+    proxy: {
+      target: 'https://www.food2fork.com',
+      changeOrigin: true,
+    },
   },
   plugins: [
     // copies the src index.html into the one in the dist folder

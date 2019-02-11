@@ -2,15 +2,18 @@
 import axios from 'axios';
 
 // for api requests to food2fork
-const key = '9dd30cb993b9f387907370655c4d6efe';
-// const proxy = 'https://still-reef-35122.herokuapp.com/';
-const proxy = 'https://cors-anywhere.herokuapp.com/';
-const searchUrl = 'https://www.food2fork.com/api/search';
-const requestUrl = 'https://www.food2fork.com/api/get';
+const info = {
+  key: '9dd30cb993b9f387907370655c4d6efe',
+  proxy: 'https://cors-anywhere.herokuapp.com/',
+  originUrl: 'https://www.food2fork.com',
+  searchUrl: 'https://www.food2fork.com/api/search',
+  requestUrl: 'https://www.food2fork.com/api/get',
+};
 
 const getResults = async (query) => {
-  const result = await axios(`${proxy}${searchUrl}?${key}&q=${query}`);
-  console.log(result);
+  const result = await axios (`${info.proxy}${info.searchUrl}?key=${info.key}&q=${query}`);
+  const recipes = result.data.recipes;
+  console.log(recipes);
 };
 
 getResults('vegan');
