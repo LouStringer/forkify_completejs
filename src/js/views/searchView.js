@@ -2,6 +2,14 @@ import { domElements } from './base';
 
 export const getSearchQuery = () => domElements.searchInput.value;
 
+export const clearSearchInput = () => {
+  domElements.searchForm.reset();
+};
+
+export const clearRecipeList = () => {
+  domElements.resultsList.innerHTML = '';
+}
+
 const prepRecipeHTML = (recipe) => {
   const recipeHTML = `
     <li>

@@ -12,8 +12,10 @@ const controlSearch = async () => {
   if (query) {
     state.search = new Search(query);
     // add UI waiting signal
+    searchView.clearSearchInput();
+    searchView.clearRecipeList();
     await state.search.getResults();
-    searchView.showRecipes(state.search.recipes); 
+    searchView.showRecipes(state.search.recipes);
   }
 };
 
