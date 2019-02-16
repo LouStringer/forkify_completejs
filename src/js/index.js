@@ -20,7 +20,12 @@ const controlSearch = async () => {
   }
 };
 
-domElements.searchForm.addEventListener('submit', e => {
-  e.preventDefault();
+domElements.searchForm.addEventListener('submit', event => {
+  event.preventDefault();
   controlSearch();
+});
+
+domElements.resultsPages.addEventListener('click', event => {
+  const button = event.target.closest('.btn-inline');
+  searchView.showRecipes(state.search.recipes, parseInt(button.dataset.goto));
 });
