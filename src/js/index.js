@@ -33,8 +33,14 @@ domElements.resultsPages.addEventListener('click', event => {
 
 // Fetch & display one recipe
 const controlRecipe = async () => {
-  const RecipeId = '#47746';
+  const id = '47746';
   if (id) {
-    state.recipe = new 
-  }
+    state.recipe = new Recipe(id);
+    renderLoader(domElements.recipe);
+    await state.recipe.getRecipe();
+    clearLoader(domElements.recipe)
+    console.log(state.recipe.selectedRecipe)
+  };
 }
+
+controlRecipe();
