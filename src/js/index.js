@@ -1,7 +1,7 @@
 // Controller file
 import Search from './models/Search';
 import Recipe from './models/Recipe';
-import { domElements, renderLoader, clearLoader } from './views/baseViews';
+import { domElements, renderLoader, clearLoader } from './views/baseView';
 import * as searchView from './views/searchView';
 
 // track global state (current search, selected recipe etc)
@@ -32,8 +32,8 @@ domElements.resultsPages.addEventListener('click', event => {
 });
 
 // Fetch & display one recipe
-const controlRecipe = async () => {
-  const id = '47746';
+const controlRecipe = async (hash) => {
+  const id = hash.slice(1);
   if (id) {
     state.recipe = new Recipe(id);
     renderLoader(domElements.recipe);
@@ -43,4 +43,4 @@ const controlRecipe = async () => {
   };
 }
 
-controlRecipe();
+window.addEventListener('hashchange', event => controlRecipe(location.hash))
