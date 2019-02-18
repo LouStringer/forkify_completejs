@@ -1,4 +1,4 @@
-import { domElements } from './base';
+import { domElements } from './baseViews';
 
 export const getSearchQuery = () => domElements.searchInput.value;
 
