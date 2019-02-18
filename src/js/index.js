@@ -15,7 +15,11 @@ const controlSearch = async () => {
     renderLoader(domElements.results);
     searchView.clearSearchInput();
     searchView.clearRecipeList();
-    await state.search.getResults();
+    try {
+      await state.search.getResults();
+    } catch(error) {
+      alert('error searching for recipes!'); //TODO add in UI instead of alert
+    }
     clearLoader();
     searchView.showRecipes(state.search.recipeList);
   }
@@ -33,14 +37,18 @@ domElements.resultsPages.addEventListener('click', event => {
 
 // Fetch & display one recipe
 const controlRecipe = async (hash) => {
-  const id = hash.slice(1);
+  const id = window.location.hash.slice(1);
   if (id) {
     state.recipe = new Recipe(id);
     renderLoader(domElements.recipe);
-    await state.recipe.getRecipe();
+    try {
+      await state.recipe.getRecipe();
+    } catch(error) {
+      alert('error getting your recipe!'); //TODO add in UI instead of alert
+    } //TODO - why doesn't it work with a try/catch in getRecipe?
     clearLoader(domElements.recipe)
-    console.log(state.recipe.selectedRecipe)
+    // console.log(state.recipe.selectedRecipe)
   };
 }
 
-window.addEventListener('hashchange', event => controlRecipe(location.hash))
+['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));

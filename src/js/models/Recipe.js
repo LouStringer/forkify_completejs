@@ -7,11 +7,11 @@ export default class Recipe {
     };
 
     async getRecipe() {
-      try {
+      // try {
         const result = await axios (`${apiStrings.proxy}${apiStrings.requestUrl}?key=${apiStrings.key}&rId=${this.id}`);
         this.selectedRecipe = result.data.recipe;
-      } catch(error) {
-        console.log(error);
-      };
+      // } catch(error) {
+      //   console.log(error);
+      // };
     };
 };
