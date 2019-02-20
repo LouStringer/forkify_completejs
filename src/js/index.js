@@ -43,11 +43,14 @@ const controlRecipe = async (hash) => {
     renderLoader(domElements.recipe);
     try {
       await state.recipe.getRecipe();
-    } catch(error) {
-      alert('error getting your recipe!'); //TODO add in UI instead of alert
-    } //TODO - why doesn't it work with a try/catch in getRecipe?
+      // console.log(state.recipe.selectedRecipe);
+      state.recipe.parseIngredients();
+      // console.log(state.recipe.selectedRecipe);
+    } catch(error) { // don't think this will trigger, as there is a catch on getRecipe()
+      // console.error(error); //TODO add in UI instead
+      alert(error.stack)
+    }
     clearLoader(domElements.recipe)
-    // console.log(state.recipe.selectedRecipe)
   };
 }
 
